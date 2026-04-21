@@ -1,0 +1,5 @@
+outs:
+- md5: 99f20c20da9f0c72d0cddfe7df2a8b7d
+  size: 139874
+  hash: md5
+  path: Data_Wisata_Preprocessed.csv
