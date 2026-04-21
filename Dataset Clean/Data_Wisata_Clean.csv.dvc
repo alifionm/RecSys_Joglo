@@ -1,0 +1,5 @@
+outs:
+- md5: 2c765f0de9a8452e314468480fb7bd5e
+  size: 87628
+  hash: md5
+  path: Data_Wisata_Clean.csv
