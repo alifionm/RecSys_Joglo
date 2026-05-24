@@ -21,21 +21,21 @@ st.set_page_config(
 def load_data():
     try:
         df_wisata = pd.read_csv('data/Data_Wisata_Clean.csv')
-        # Pastikan tidak ada NaN di kolom teks untuk TF-IDF
-        if 'Deskripsi_Wisata_Clean' in df_wisata.columns:
-            df_wisata['Deskripsi_Wisata_Clean'] = df_wisata['Deskripsi_Wisata_Clean'].fillna('')
+        
+        # PERBAIKAN: Jika kolom 'Deskripsi_Wisata_Clean' tidak ada, gunakan 'Deskripsi_Wisata'
+        if 'Deskripsi_Wisata_Clean' not in df_wisata.columns:
+            if 'Deskripsi_Wisata' in df_wisata.columns:
+                df_wisata['Deskripsi_Wisata_Clean'] = df_wisata['Deskripsi_Wisata']
+            else:
+                df_wisata['Deskripsi_Wisata_Clean'] = "" # Fallback aman jika keduanya tidak ada
+                
+        # Pastikan tidak ada nilai kosong (NaN) agar TF-IDF tidak error
+        df_wisata['Deskripsi_Wisata_Clean'] = df_wisata['Deskripsi_Wisata_Clean'].fillna('')
+        
         return df_wisata
     except Exception as e:
         st.error(f"Gagal memuat dataset: {e}. Pastikan file ada di folder 'data/'.")
         return pd.DataFrame()
-
-@st.cache_resource
-def load_model():
-    try:
-        return joblib.load('saved_models/best_svd_model.pkl')
-    except Exception as e:
-        st.error(f"Gagal memuat model SVD: {e}. Pastikan file .pkl ada di 'saved_models/'.")
-        return None
 
 # ==========================================
 # 3. ALGORITMA REKOMENDASI HYBRID
