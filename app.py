@@ -9,7 +9,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 # ==========================================
 st.set_page_config(
     page_title="Rekomendasi Wisata Jogja-Solo",
-    page_icon="🗺️",
+    page_icon="icon.png",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -107,7 +107,7 @@ def main():
 
     # --- SIDEBAR: Input Pengguna ---
     with st.sidebar:
-        st.image("https://cdn-icons-png.flaticon.com/512/2060/2060284.png", width=100)
+        st.image("logo.png", use_container_width=True)
         st.header("Preferensi Wisatawan")
         st.markdown("Masukkan profil dan destinasi terakhir yang Anda kunjungi.")
         
