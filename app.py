@@ -37,6 +37,14 @@ def load_data():
         st.error(f"Gagal memuat dataset: {e}. Pastikan file ada di folder 'data/'.")
         return pd.DataFrame()
 
+@st.cache_resource
+def load_model():
+    try:
+        return joblib.load('saved_models/best_svd_model.pkl')
+    except Exception as e:
+        st.error(f"Gagal memuat model SVD: {e}. Pastikan file .pkl ada di 'saved_models/'.")
+        return None
+
 # ==========================================
 # 3. ALGORITMA REKOMENDASI HYBRID
 # ==========================================
